@@ -39,7 +39,18 @@
                     <div class="input-field col s6">
                         <input type="hidden" name="user_city_id" id="user_city_id" value="<?php echo !empty($user_data['city_id']) ? $user_data['city_id'] : ''; ?>" />
                         <select name="city_name" id="city_name">
-                            <option value="" >Select City</option>                        
+                            <option value="" >Select City</option>
+                            <?php 
+                            
+                            if(!empty($city_data)){
+                                foreach($city_data as $city)
+                                {
+                                 ?>
+                                 <option <?php echo (!empty($user_data)) && $user_data['city_id']==$city['city_id'] ? 'selected' : ''; ?> value="<?php echo (!empty($city['city_id'])) ? $city['city_id'] : ''; ?>"><?php echo (!empty($city['city_name'])) ? $city['city_name'] : ''; ?></option>
+                                 <?php   
+                                }
+                            }
+                            ?>                     
                         </select>
                         <label>City</label>
                     </div>
@@ -50,12 +61,12 @@
                     </div>
 
                     <div class="input-field col s6">
-                        <input type="password" name="password" id="password" value="*****" required  <?php echo !empty($user_data) ? 'readonly' : ''; ?> >
+                        <input type="password" name="password" id="password" value="<?php echo !empty($user_data) ? '*****' : ''; ?>" required  <?php echo !empty($user_data) ? 'readonly' : ''; ?> >
                         <label for="password">Password</label>
                     </div>                    
 
                     <div class="input-field col s12">
-                        <button class="btn waves-effect waves-light" type="submit" id="register_btn">Register</button>
+                        <button class="btn waves-effect waves-light" type="submit" id="register_btn"><?php echo !empty($user_data) ? 'Update' : 'Register'; ?></button>
                     </div>
                 </form>
 

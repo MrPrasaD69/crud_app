@@ -13,8 +13,12 @@ class User extends BaseController{
     }
 
     public function add(){
-        $data['city_data'] = $this->getCityData();
+        $model_city = new CityModel;
         $data['state_data'] = $this->getStateData();
+        $data['city_data'] = $model_city->findAll();
+        // echo "<pre>";
+        // print_r($data);
+        // exit;
         $id = !empty($_REQUEST['id']) ? $_REQUEST['id'] : '';
         $model_user = new UserModel;
         $data['user_data'] = $model_user->where('user_id = "'.$id.'" ')->first();

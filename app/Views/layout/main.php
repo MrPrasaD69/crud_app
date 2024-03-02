@@ -29,21 +29,6 @@
     <script>
         $(document).ready(function(){
 
-            var selected_state = $("#state_name").val();
-            var user_city_id = $("#user_city_id").val();
-            $.ajax({
-                url:'<?php echo base_url(); ?>user/getCityData',
-                data:'state_id='+selected_state+'&user_city_id='+user_city_id,
-                success:function(data){
-                    var resp = data.split('::');
-                    if(resp[0]==200){                        
-                        $('#city_name').html(resp[1]);                        
-                        M.FormSelect.init($('#city_name'));
-                    }
-                }
-            });
-
-        
             var reg_btn = $("#register_btn");
             var frm = $("#register_form");
 
